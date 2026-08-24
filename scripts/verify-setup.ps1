@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Plugin', 'All')]
+    [ValidateSet('Plugin', 'Ffmpeg', 'All')]
     [string]$Check = 'All'
 )
 
@@ -14,8 +14,19 @@ function Test-Plugin {
     return $false
 }
 
+function Test-Ffmpeg {
+    $v = & ffmpeg -version 2>$null
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "[OK] Ffmpeg: $($v | Select-Object -First 1)"
+        return $true
+    }
+    Write-Host "[FAIL] Ffmpeg: 'ffmpeg -version' falhou ou nao esta no PATH"
+    return $false
+}
+
 $results = @()
 if ($Check -eq 'All' -or $Check -eq 'Plugin') { $results += Test-Plugin }
+if ($Check -eq 'All' -or $Check -eq 'Ffmpeg') { $results += Test-Ffmpeg }
 
 if ($results -contains $false) { exit 1 }
 Write-Output "Todos os checks selecionados passaram."
