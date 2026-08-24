@@ -15,6 +15,10 @@ function Test-Plugin {
 }
 
 function Test-Ffmpeg {
+    if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+        Write-Host "[FAIL] Ffmpeg: 'ffmpeg' nao encontrado no PATH"
+        return $false
+    }
     $v = & ffmpeg -version 2>$null
     if ($LASTEXITCODE -eq 0) {
         Write-Host "[OK] Ffmpeg: $($v | Select-Object -First 1)"
