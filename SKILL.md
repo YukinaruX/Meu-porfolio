@@ -47,6 +47,12 @@ Mantém-se o princípio do plugin original: se `flow_generate_video` falhar ou a
 
 ## Como ativar no site-planner
 
+> ⚠️ **Correção (2026-08-24):** a abordagem por flag descrita abaixo (`ASSET_BACKEND=flow` lido de `AGENTS.md`) **nunca foi verificada** contra o código real do plugin `scroll-3d` instalado. A investigação da Task 3 do plano `docs/superpowers/plans/2026-08-24-scroll3d-dependency-setup.md` (registrada em `docs/plugin-conventions.md`, seção `ASSET_BACKEND`) confirmou que essa premissa é **falsa**: o `site-planner`/`asset-generator` reais não leem `AGENTS.md` nem nenhuma variável `ASSET_BACKEND` — são hardcoded para Higgsfield (`nano_banana_pro`/`seedance_2_0`), sem nenhum ponto de decisão condicional por flag ou variável de ambiente. Não existe, no plugin como instalado, mecanismo de configuração persistente para trocar o backend de geração de assets.
+>
+> **O que realmente funciona**, conforme documentado em `AGENTS.md` deste repositório (seção `## Configuração local deste projeto`): a cada acionamento do `site-planner`, é preciso dizer explicitamente, no briefing/prompt passado a ele naquele momento, que a seção deve usar as tools `flow_*` do servidor MCP `google-flow` em vez do fluxo Higgsfield padrão do `asset-generator`. Essa instrução precisa ser repetida a cada uso — sem ela, o build usa Higgsfield por padrão, já que não há flag, arquivo de config ou variável de ambiente que o plugin leia automaticamente.
+
+O texto abaixo é o design original deste adaptador (anterior a essa verificação), mantido aqui só como registro histórico/aspiracional — **não é instrução operacional válida**:
+
 No seu fork local, aponte a etapa de geração de assets para este arquivo em vez do `asset-generator` padrão — por exemplo, via uma flag no seu `AGENTS.md`/config do projeto:
 
 ```

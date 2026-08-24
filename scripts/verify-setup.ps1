@@ -39,6 +39,10 @@ function Test-GoogleFlowMcp {
         Write-Host "[FAIL] GoogleFlowMcp: expectedAccount nao preenchido em flow.config.json"
         return $false
     }
+    if ([string]::IsNullOrWhiteSpace($config.chromeProfile)) {
+        Write-Host "[FAIL] GoogleFlowMcp: chromeProfile nao preenchido em flow.config.json"
+        return $false
+    }
     $mcpList = claude mcp list 2>&1 | Out-String
     if ($mcpList -notmatch 'google-flow') {
         Write-Host "[FAIL] GoogleFlowMcp: 'google-flow' nao aparece em 'claude mcp list'"
