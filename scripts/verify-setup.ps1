@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Plugin', 'Ffmpeg', 'GoogleFlowMcp', 'AssetBackendFlag', 'All')]
+    [ValidateSet('Plugin', 'Ffmpeg', 'GoogleFlowMcp', 'AssetBackendFlag', 'CloudflareEnv', 'All')]
     [string]$Check = 'All'
 )
 
@@ -65,11 +65,23 @@ function Test-AssetBackendFlag {
     return $false
 }
 
+function Test-CloudflareEnv {
+    $token = [Environment]::GetEnvironmentVariable('CLOUDFLARE_API_TOKEN', 'User')
+    $account = [Environment]::GetEnvironmentVariable('CLOUDFLARE_ACCOUNT_ID', 'User')
+    if ($token -and $account) {
+        Write-Host "[OK] CloudflareEnv: CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID setados (usuario)"
+        return $true
+    }
+    Write-Host "[FAIL] CloudflareEnv: falta CLOUDFLARE_API_TOKEN e/ou CLOUDFLARE_ACCOUNT_ID (variavel de ambiente do usuario)"
+    return $false
+}
+
 $results = @()
 if ($Check -eq 'All' -or $Check -eq 'Plugin') { $results += Test-Plugin }
 if ($Check -eq 'All' -or $Check -eq 'Ffmpeg') { $results += Test-Ffmpeg }
 if ($Check -eq 'All' -or $Check -eq 'GoogleFlowMcp') { $results += Test-GoogleFlowMcp }
 if ($Check -eq 'All' -or $Check -eq 'AssetBackendFlag') { $results += Test-AssetBackendFlag }
+if ($Check -eq 'All' -or $Check -eq 'CloudflareEnv') { $results += Test-CloudflareEnv }
 
 if ($results -contains $false) { exit 1 }
 Write-Output "Todos os checks selecionados passaram."
