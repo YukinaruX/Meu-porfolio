@@ -92,10 +92,10 @@ function Test-Plugin {
     $installed = claude plugin list --json 2>$null | ConvertFrom-Json
     $found = $installed | Where-Object { $_.id -like 'scroll-3d@*' }
     if ($found) {
-        Write-Output "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
+        Write-Host "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
         return $true
     }
-    Write-Output "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
+    Write-Host "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
     return $false
 }
 
@@ -109,19 +109,24 @@ exit 0
 
 - [ ] **Step 2: Rodar o check e confirmar que falha (estado real: plugin não instalado)**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check Plugin`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check Plugin`
 Expected: linha `[FAIL] Plugin: ...` e exit code `1`
 
 - [ ] **Step 3: Instalar o marketplace e o plugin de verdade**
 
+O one-liner `claude plugin marketplace add ankitstage21/3D-website` falha (`Marketplace file not found`) porque o manifesto do repositório não fica na raiz — ele está em `scroll3d-plugin/.claude-plugin/marketplace.json`, com o plugin em si em `scroll3d-plugin/plugins/scroll-3d/`. `claude plugin marketplace add owner/repo` só procura o manifesto na raiz do repo, e não existe flag pra apontar pra um subdiretório. Apontar `marketplace add` direto pra URL do `marketplace.json` também não funciona sozinho: o `install` subsequente falha porque só o JSON é baixado, não a árvore `plugins/` que o manifesto referencia via `"source": "./plugins/scroll-3d"`.
+
+A solução é clonar o repositório pra um local permanente (não use pasta de scratchpad/temp — remover a marketplace depois desinstala o plugin como efeito colateral) e apontar o `marketplace add` pro subdiretório `scroll3d-plugin` dentro do clone:
+
 ```bash
-claude plugin marketplace add ankitstage21/3D-website
+git clone --depth 1 https://github.com/ankitstage21/3D-website.git "$USERPROFILE/.claude/plugin-sources/3D-website"
+claude plugin marketplace add "$USERPROFILE/.claude/plugin-sources/3D-website/scroll3d-plugin"
 claude plugin install scroll-3d@scroll3d-plugin -y
 ```
 
 - [ ] **Step 4: Rodar o check de novo e confirmar que passa**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check Plugin`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check Plugin`
 Expected: linha `[OK] Plugin: scroll-3d@scroll3d-plugin instalado (scope user)` e exit code `0`
 
 - [ ] **Step 5: Commit**
@@ -221,20 +226,20 @@ function Test-Plugin {
     $installed = claude plugin list --json 2>$null | ConvertFrom-Json
     $found = $installed | Where-Object { $_.id -like 'scroll-3d@*' }
     if ($found) {
-        Write-Output "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
+        Write-Host "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
         return $true
     }
-    Write-Output "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
+    Write-Host "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
     return $false
 }
 
 function Test-Ffmpeg {
     $v = & ffmpeg -version 2>$null
     if ($LASTEXITCODE -eq 0) {
-        Write-Output "[OK] Ffmpeg: $($v | Select-Object -First 1)"
+        Write-Host "[OK] Ffmpeg: $($v | Select-Object -First 1)"
         return $true
     }
-    Write-Output "[FAIL] Ffmpeg: 'ffmpeg -version' falhou ou nao esta no PATH"
+    Write-Host "[FAIL] Ffmpeg: 'ffmpeg -version' falhou ou nao esta no PATH"
     return $false
 }
 
@@ -249,7 +254,7 @@ exit 0
 
 - [ ] **Step 2: Rodar o check e confirmar que falha**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check Ffmpeg`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check Ffmpeg`
 Expected: `[FAIL] Ffmpeg: ...` e exit code `1`
 
 - [ ] **Step 3: Instalar via winget**
@@ -265,7 +270,7 @@ Se `winget` não for reconhecido nessa sessão de shell, chame pelo caminho comp
 
 - [ ] **Step 4: Abrir uma sessão de shell nova (o PATH só propaga em sessões novas) e confirmar que o check passa**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check Ffmpeg`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check Ffmpeg`
 Expected: `[OK] Ffmpeg: ffmpeg version ...` e exit code `0`
 
 - [ ] **Step 5: Commit**
@@ -338,40 +343,40 @@ function Test-Plugin {
     $installed = claude plugin list --json 2>$null | ConvertFrom-Json
     $found = $installed | Where-Object { $_.id -like 'scroll-3d@*' }
     if ($found) {
-        Write-Output "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
+        Write-Host "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
         return $true
     }
-    Write-Output "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
+    Write-Host "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
     return $false
 }
 
 function Test-Ffmpeg {
     $v = & ffmpeg -version 2>$null
     if ($LASTEXITCODE -eq 0) {
-        Write-Output "[OK] Ffmpeg: $($v | Select-Object -First 1)"
+        Write-Host "[OK] Ffmpeg: $($v | Select-Object -First 1)"
         return $true
     }
-    Write-Output "[FAIL] Ffmpeg: 'ffmpeg -version' falhou ou nao esta no PATH"
+    Write-Host "[FAIL] Ffmpeg: 'ffmpeg -version' falhou ou nao esta no PATH"
     return $false
 }
 
 function Test-GoogleFlowMcp {
     $configPath = "$env:USERPROFILE\mcp-servers\Google-Flow_MCP\config\flow.config.json"
     if (-not (Test-Path $configPath)) {
-        Write-Output "[FAIL] GoogleFlowMcp: config nao encontrado em $configPath"
+        Write-Host "[FAIL] GoogleFlowMcp: config nao encontrado em $configPath"
         return $false
     }
     $config = Get-Content $configPath -Raw | ConvertFrom-Json
     if (-not $config.expectedAccount -or $config.expectedAccount -eq 'your-email@gmail.com') {
-        Write-Output "[FAIL] GoogleFlowMcp: expectedAccount nao preenchido em flow.config.json"
+        Write-Host "[FAIL] GoogleFlowMcp: expectedAccount nao preenchido em flow.config.json"
         return $false
     }
     $mcpList = claude mcp list 2>&1 | Out-String
     if ($mcpList -notmatch 'google-flow') {
-        Write-Output "[FAIL] GoogleFlowMcp: 'google-flow' nao aparece em 'claude mcp list'"
+        Write-Host "[FAIL] GoogleFlowMcp: 'google-flow' nao aparece em 'claude mcp list'"
         return $false
     }
-    Write-Output "[OK] GoogleFlowMcp: config preenchido e servidor registrado (conta $($config.expectedAccount))"
+    Write-Host "[OK] GoogleFlowMcp: config preenchido e servidor registrado (conta $($config.expectedAccount))"
     return $true
 }
 
@@ -379,10 +384,10 @@ function Test-AssetBackendFlag {
     $agentsPath = "$PSScriptRoot\..\AGENTS.md"
     $content = Get-Content $agentsPath -Raw
     if ($content -match 'ASSET_BACKEND\s*=\s*flow') {
-        Write-Output "[OK] AssetBackendFlag: ASSET_BACKEND=flow presente em AGENTS.md"
+        Write-Host "[OK] AssetBackendFlag: ASSET_BACKEND=flow presente em AGENTS.md"
         return $true
     }
-    Write-Output "[FAIL] AssetBackendFlag: ASSET_BACKEND=flow ausente em AGENTS.md"
+    Write-Host "[FAIL] AssetBackendFlag: ASSET_BACKEND=flow ausente em AGENTS.md"
     return $false
 }
 
@@ -399,10 +404,10 @@ exit 0
 
 - [ ] **Step 6: Rodar os dois novos checks e confirmar que ainda falham (AGENTS.md sem a flag ainda)**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check GoogleFlowMcp`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check GoogleFlowMcp`
 Expected: `[OK]` se os steps 1–4 já foram concluídos corretamente (este check valida config + registro, não depende da flag)
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check AssetBackendFlag`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check AssetBackendFlag`
 Expected: `[FAIL] AssetBackendFlag: ...` (a flag ainda não foi escrita)
 
 - [ ] **Step 7: Gravar a flag no `AGENTS.md`**
@@ -420,7 +425,7 @@ Se o veredito foi `divergente`, adicione em vez disso a nota de contingência (c
 
 - [ ] **Step 8: Rodar o check de novo e confirmar que passa**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check AssetBackendFlag`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check AssetBackendFlag`
 Expected: `[OK] AssetBackendFlag: ASSET_BACKEND=flow presente em AGENTS.md` e exit code `0`
 
 - [ ] **Step 9: Commit**
@@ -453,40 +458,40 @@ function Test-Plugin {
     $installed = claude plugin list --json 2>$null | ConvertFrom-Json
     $found = $installed | Where-Object { $_.id -like 'scroll-3d@*' }
     if ($found) {
-        Write-Output "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
+        Write-Host "[OK] Plugin: $($found.id) instalado (scope $($found.scope))"
         return $true
     }
-    Write-Output "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
+    Write-Host "[FAIL] Plugin: nenhum id 'scroll-3d@*' em 'claude plugin list --json'"
     return $false
 }
 
 function Test-Ffmpeg {
     $v = & ffmpeg -version 2>$null
     if ($LASTEXITCODE -eq 0) {
-        Write-Output "[OK] Ffmpeg: $($v | Select-Object -First 1)"
+        Write-Host "[OK] Ffmpeg: $($v | Select-Object -First 1)"
         return $true
     }
-    Write-Output "[FAIL] Ffmpeg: 'ffmpeg -version' falhou ou nao esta no PATH"
+    Write-Host "[FAIL] Ffmpeg: 'ffmpeg -version' falhou ou nao esta no PATH"
     return $false
 }
 
 function Test-GoogleFlowMcp {
     $configPath = "$env:USERPROFILE\mcp-servers\Google-Flow_MCP\config\flow.config.json"
     if (-not (Test-Path $configPath)) {
-        Write-Output "[FAIL] GoogleFlowMcp: config nao encontrado em $configPath"
+        Write-Host "[FAIL] GoogleFlowMcp: config nao encontrado em $configPath"
         return $false
     }
     $config = Get-Content $configPath -Raw | ConvertFrom-Json
     if (-not $config.expectedAccount -or $config.expectedAccount -eq 'your-email@gmail.com') {
-        Write-Output "[FAIL] GoogleFlowMcp: expectedAccount nao preenchido em flow.config.json"
+        Write-Host "[FAIL] GoogleFlowMcp: expectedAccount nao preenchido em flow.config.json"
         return $false
     }
     $mcpList = claude mcp list 2>&1 | Out-String
     if ($mcpList -notmatch 'google-flow') {
-        Write-Output "[FAIL] GoogleFlowMcp: 'google-flow' nao aparece em 'claude mcp list'"
+        Write-Host "[FAIL] GoogleFlowMcp: 'google-flow' nao aparece em 'claude mcp list'"
         return $false
     }
-    Write-Output "[OK] GoogleFlowMcp: config preenchido e servidor registrado (conta $($config.expectedAccount))"
+    Write-Host "[OK] GoogleFlowMcp: config preenchido e servidor registrado (conta $($config.expectedAccount))"
     return $true
 }
 
@@ -494,10 +499,10 @@ function Test-AssetBackendFlag {
     $agentsPath = "$PSScriptRoot\..\AGENTS.md"
     $content = Get-Content $agentsPath -Raw
     if ($content -match 'ASSET_BACKEND\s*=\s*flow') {
-        Write-Output "[OK] AssetBackendFlag: ASSET_BACKEND=flow presente em AGENTS.md"
+        Write-Host "[OK] AssetBackendFlag: ASSET_BACKEND=flow presente em AGENTS.md"
         return $true
     }
-    Write-Output "[FAIL] AssetBackendFlag: ASSET_BACKEND=flow ausente em AGENTS.md"
+    Write-Host "[FAIL] AssetBackendFlag: ASSET_BACKEND=flow ausente em AGENTS.md"
     return $false
 }
 
@@ -505,10 +510,10 @@ function Test-CloudflareEnv {
     $token = [Environment]::GetEnvironmentVariable('CLOUDFLARE_API_TOKEN', 'User')
     $account = [Environment]::GetEnvironmentVariable('CLOUDFLARE_ACCOUNT_ID', 'User')
     if ($token -and $account) {
-        Write-Output "[OK] CloudflareEnv: CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID setados (usuario)"
+        Write-Host "[OK] CloudflareEnv: CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID setados (usuario)"
         return $true
     }
-    Write-Output "[FAIL] CloudflareEnv: falta CLOUDFLARE_API_TOKEN e/ou CLOUDFLARE_ACCOUNT_ID (variavel de ambiente do usuario)"
+    Write-Host "[FAIL] CloudflareEnv: falta CLOUDFLARE_API_TOKEN e/ou CLOUDFLARE_ACCOUNT_ID (variavel de ambiente do usuario)"
     return $false
 }
 
@@ -528,7 +533,7 @@ Se `docs/plugin-conventions.md` apontou nomes de variável diferentes de `CLOUDF
 
 - [ ] **Step 2: Rodar o check e confirmar que falha**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check CloudflareEnv`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check CloudflareEnv`
 Expected: `[FAIL] CloudflareEnv: ...` e exit code `1`
 
 - [ ] **Step 3: PARAR e pedir para o usuário gerar o token**
@@ -550,7 +555,7 @@ Peça para o usuário:
 
 - [ ] **Step 5: Abrir uma sessão de shell nova e confirmar que o check passa**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check CloudflareEnv`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check CloudflareEnv`
 Expected: `[OK] CloudflareEnv: ...` e exit code `0`
 
 - [ ] **Step 6: Commit**
@@ -573,7 +578,7 @@ git commit -m "feat: add Cloudflare deploy credentials check to verify-setup"
 
 - [ ] **Step 1: Rodar todos os checks de uma vez**
 
-Run: `powershell -File scripts/verify-setup.ps1 -Check All`
+Run: `powershell -ExecutionPolicy Bypass -File scripts/verify-setup.ps1 -Check All`
 Expected: cinco linhas `[OK]` (Plugin, Ffmpeg, GoogleFlowMcp, AssetBackendFlag, CloudflareEnv), mensagem final "Todos os checks selecionados passaram." e exit code `0`
 
 - [ ] **Step 2: Marcar o checklist do spec como concluído**
