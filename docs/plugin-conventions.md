@@ -39,10 +39,14 @@ configuração persistente para essa troca no plugin como instalado.
 ## CLOUDFLARE_VARS
 Veredito: CLOUDFLARE_VARS: confirmado
 Evidência: `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` aparecem literalmente, com esses nomes exatos,
-no passo de deploy de todas as 6 technique skills que possuem etapa de deploy (`3d-scene-effect`,
-`click-navigate`, `cursor-trail`, `hybrid-2d3d`, `physics-play`, `video-scroll-effect`) — 18 ocorrências
-de `CLOUDFLARE` no total no `installPath`. Trecho representativo, idêntico (a menos do número do step) em
-todas elas — ex. `skills\3d-scene-effect\SKILL.md`, linhas 100-107:
+no passo de deploy de todas as 7 technique skills que possuem etapa de deploy (`3d-scene-effect`,
+`click-navigate`, `cursor-trail`, `hybrid-2d3d`, `physics-play`, `pointer-follow-effect`,
+`video-scroll-effect`) — 17 ocorrências de `CLOUDFLARE` nessas 7 skills (`pointer-follow-effect\SKILL.md`,
+linhas 114-124, tem seu próprio "### 6. Deploy to Cloudflare Pages..." e diz explicitamente que reusa o
+mesmo passo de `video-scroll-effect`/`3d-scene-effect`). A busca case-insensitive por `CLOUDFLARE` em todo
+o `installPath` retorna 18 ocorrências no total; a linha restante é `agents\build-reviewer.md` (1
+ocorrência, no texto de `description` do agente, não em um passo de deploy). Trecho representativo,
+idêntico (a menos do número do step) em todas as 7 — ex. `skills\3d-scene-effect\SKILL.md`, linhas 100-107:
 
 ```
 ### 5. Deploy to Cloudflare Pages + write out to connected folder
