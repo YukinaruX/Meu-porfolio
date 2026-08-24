@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Plugin', 'Ffmpeg', 'All')]
+    [ValidateSet('Plugin', 'Ffmpeg', 'GoogleFlowMcp', 'AssetBackendFlag', 'All')]
     [string]$Check = 'All'
 )
 
@@ -24,9 +24,48 @@ function Test-Ffmpeg {
     return $false
 }
 
+function Test-GoogleFlowMcp {
+    $configPath = "$env:USERPROFILE\mcp-servers\Google-Flow_MCP\config\flow.config.json"
+    if (-not (Test-Path $configPath)) {
+        Write-Host "[FAIL] GoogleFlowMcp: config nao encontrado em $configPath"
+        return $false
+    }
+    $config = Get-Content $configPath -Raw | ConvertFrom-Json
+    if (-not $config.expectedAccount -or $config.expectedAccount -eq 'your-email@gmail.com') {
+        Write-Host "[FAIL] GoogleFlowMcp: expectedAccount nao preenchido em flow.config.json"
+        return $false
+    }
+    $mcpList = claude mcp list 2>&1 | Out-String
+    if ($mcpList -notmatch 'google-flow') {
+        Write-Host "[FAIL] GoogleFlowMcp: 'google-flow' nao aparece em 'claude mcp list'"
+        return $false
+    }
+    Write-Host "[OK] GoogleFlowMcp: config preenchido e servidor registrado (conta $($config.expectedAccount))"
+    return $true
+}
+
+function Test-AssetBackendFlag {
+    # NOTA: nao existe uma flag ASSET_BACKEND=flow real neste projeto. O veredito registrado em
+    # docs/plugin-conventions.md (secao ASSET_BACKEND) e "divergente": o build real do plugin
+    # scroll-3d instalado nao le AGENTS.md nem nenhuma variavel ASSET_BACKEND (asset-generator e
+    # site-planner sao hardcoded para Higgsfield). Por isso este check procura, em vez da flag, a
+    # nota de contingencia gravada em AGENTS.md que documenta o mecanismo manual (briefing ao
+    # site-planner instruindo o uso das tools flow_* do MCP google-flow).
+    $agentsPath = "$PSScriptRoot\..\AGENTS.md"
+    $content = Get-Content $agentsPath -Raw
+    if ($content -match '## Configuração local deste projeto' -and $content -match 'flow_\*') {
+        Write-Host "[OK] AssetBackendFlag: nota de contingencia ASSET_BACKEND (divergente) presente em AGENTS.md"
+        return $true
+    }
+    Write-Host "[FAIL] AssetBackendFlag: nota de contingencia ASSET_BACKEND ausente em AGENTS.md"
+    return $false
+}
+
 $results = @()
 if ($Check -eq 'All' -or $Check -eq 'Plugin') { $results += Test-Plugin }
 if ($Check -eq 'All' -or $Check -eq 'Ffmpeg') { $results += Test-Ffmpeg }
+if ($Check -eq 'All' -or $Check -eq 'GoogleFlowMcp') { $results += Test-GoogleFlowMcp }
+if ($Check -eq 'All' -or $Check -eq 'AssetBackendFlag') { $results += Test-AssetBackendFlag }
 
 if ($results -contains $false) { exit 1 }
 Write-Output "Todos os checks selecionados passaram."

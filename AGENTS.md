@@ -79,3 +79,11 @@ Diferenças principais a considerar antes de ativar:
 - Falha em seção de vídeo → o build **para**, nunca troca silenciosamente por técnica mais barata
 - Toda seção cujo resultado final divergiu do plano aprovado entra numa lista de **"desvios do plano"**, exibida com destaque antes de declarar o build pronto
 - Todo build gera um `DESIGN.md` com tabela plano vs. resultado — **sem esse arquivo, o build é considerado falho**
+
+## Configuração local deste projeto
+
+**ASSET_BACKEND: sem flag automática (divergente — ver `docs/plugin-conventions.md`, seção `ASSET_BACKEND`).**
+
+A verificação contra os arquivos reais do plugin `scroll-3d@scroll3d-plugin` instalado neste projeto (documentada em `docs/plugin-conventions.md`) confirmou que o build real **não lê `AGENTS.md` nem nenhuma variável `ASSET_BACKEND`**: as skills `asset-generator` e `site-planner` são hardcoded para gerar assets via Higgsfield (modelos `nano_banana_pro`/`seedance_2_0`), sem nenhum ponto de decisão condicional por flag ou variável de ambiente. Não existe, portanto, um mecanismo de configuração persistente para trocar o backend de geração de assets.
+
+**Plano de contingência (repetir a cada uso):** sempre que `site-planner` for acionado neste projeto e uma seção deva usar **Google Flow** em vez de Higgsfield, isso deve ser dito explicitamente no briefing/prompt passado ao `site-planner` naquele momento — instruindo que a seção use as tools `flow_*` do servidor MCP `google-flow` (registrado no escopo local deste projeto via `claude mcp add`) em vez do fluxo Higgsfield padrão do `asset-generator`. Sem essa instrução manual explícita a cada acionamento, o build usa Higgsfield por padrão.
