@@ -62,11 +62,11 @@ Ativa o adapter descrito em `SKILL.md` (`flow-asset-generator`), no lugar do `as
 
 ### 6. Checklist final "pronto pra criar"
 Antes de invocar `site-planner` pela primeira vez, confirmar:
-- [ ] Plugin `scroll-3d` presente em `~/.claude/plugins`
-- [ ] Repositório git inicializado e sem mudanças pendentes
-- [ ] `ffmpeg -version` funciona numa sessão nova
-- [ ] Servidor MCP do Google Flow responde (Chrome logado na conta certa)
-- [ ] `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` setadas no ambiente
+- [x] Plugin `scroll-3d` presente em `~/.claude/plugins`
+- [x] Repositório git inicializado e sem mudanças pendentes
+- [x] `ffmpeg -version` funciona numa sessão nova
+- [x] Servidor MCP do Google Flow responde (Chrome logado na conta certa)
+- [x] `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` setadas no ambiente
 
 ## Critério de sucesso
 
