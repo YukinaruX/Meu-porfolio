@@ -1,5 +1,13 @@
 # DESIGN.md — Rikelme Batista portfolio (scroll-3d)
 
+## Nome A-NFC no mobile — 23/10/2026
+
+| Problema | Resultado |
+|---|---|
+| Nome da empresa quebrava em duas linhas a 320px | Nome não quebra e fonte se adapta à largura do celular, preservando logotipo e identidade |
+
+Reproduzido no site publicado em 320px. Build passou; Chrome confirmou nome em uma linha, identidade contida e página sem overflow em 320/360/390/430/768/1440px. Captura em docs/private/anfc-mobile-after.png. Sem novos assets ou dependências.
+
 ## Correção do orçamento em produção — 23/10/2026
 
 | Problema confirmado | Correção |
@@ -7,7 +15,7 @@
 | Botão desativado após preencher e marcar aviso | Build publicado sem variáveis públicas do Supabase; adicionada configuração pública padrão versionada, preservando substituições por ambiente |
 | Origem de produção rejeitada com 403 | Função lead-intake versão 4 permite explicitamente https://rikfazlp.online; origens desconhecidas permanecem bloqueadas |
 
-Build verificado com variáveis de Supabase vazias, reproduzindo a hospedagem sem `.env`. Teste do CRM passou: revisão, edição, consentimento, falha e reenvio, confirmação PT/EN e atualização do painel. Nenhuma alteração de schema, permissões ou políticas RLS; somente chave publishable pública no cliente. Teste real de produção será feito após publicação, com um único pedido sintético identificado para remoção.
+Build verificado com variáveis de Supabase vazias, reproduzindo a hospedagem sem `.env`. Teste do CRM passou: revisão, edição, consentimento, falha e reenvio, confirmação PT/EN e atualização do painel. Nenhuma alteração de schema, permissões ou políticas RLS; somente chave publishable pública no cliente. Teste real de produção passou: consentimento habilitou o botão, envio retornou 200, confirmação apareceu e o registro foi conferido no Supabase. O único pedido sintético foi removido pelo UUID e contato de teste. CORS aceitou o domínio público e rejeitou origem desconhecida.
 
 ## Domínio da prévia confirmado — 23/10/2026
 

@@ -204,7 +204,7 @@ summary::-webkit-details-marker { display: none; }
 .founder-spotlight-wrap { @apply col-span-full border-b border-line pb-16; margin-bottom: 16px; }
 .founder-spotlight { @apply grid items-center gap-16; grid-template-columns: 1fr 1.25fr; scroll-margin-top: 110px; }
 .company-lockup { @apply flex items-center gap-6; }
-.company-lockup > p { @apply font-display font-semibold; font-size: clamp(52px, 6vw, 86px); letter-spacing: -.06em; }
+.company-lockup > p { @apply font-display font-semibold; font-size: clamp(52px, 6vw, 86px); letter-spacing: -.06em; white-space: nowrap; flex-shrink: 0; }
 .company-identity > p { @apply mt-7 text-paper; font-size: 15px; }
 .company-identity > p span { @apply mt-1 block text-muted; font-size: 13px; }
 .company-story > .eyebrow { @apply mb-6; }
@@ -311,7 +311,7 @@ summary::-webkit-details-marker { display: none; }
   .founder-signature span span { font-size: 11px; }
   .founder-spotlight { grid-template-columns: 1fr; gap: 40px; }
   .founder-spotlight-wrap { padding-bottom: 56px; margin-bottom: 0; }
-  .company-lockup > p { font-size: 64px; }
+  .company-lockup > p { font-size: clamp(44px, 16vw, 64px); }
   .company-story h2 { font-size: 44px; }
   .company-story > p:not(.eyebrow) { font-size: 15px; }
 }
