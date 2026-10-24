@@ -1,7 +1,36 @@
 node_modules/
 .env
 .env.*
+!.env.example
 dist/
 build/
 .frame-cache/
 *.log
+*.mp4
+.portfolio-tools/
+docs/private/
+.playwright-cli/
+
+# Local tools and Supabase CLI state
+.superpowers/
+supabase/.temp/
+supabase/.branches/
+.supabase/
+.vercel/
+.netlify/
+.wrangler/
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+
+# Private key material (public site assets and resumes remain versioned)
+*.pem
+*.key
+*.p12
+*.pfx

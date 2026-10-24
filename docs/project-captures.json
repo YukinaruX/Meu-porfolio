@@ -1,0 +1,174 @@
+[
+  {
+    "id": "alice-vieira",
+    "url": "https://alice-vieira.vercel.app/",
+    "capturedAt": "2026-10-22T01:37:35.710Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "assets/projects/alice-vieira-desktop.png",
+        "width": 1440,
+        "height": 5449
+      },
+      {
+        "mode": "mobile",
+        "file": "assets/projects/alice-vieira-mobile.png",
+        "width": 390,
+        "height": 7439
+      }
+    ],
+    "visible": true
+  },
+  {
+    "id": "everton-editor",
+    "url": "https://landing-page-everton-editor-6nvp.vercel.app/",
+    "capturedAt": "2026-10-22T01:37:46.817Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "assets/projects/everton-editor-desktop.png",
+        "width": 1440,
+        "height": 6035
+      },
+      {
+        "mode": "mobile",
+        "file": "assets/projects/everton-editor-mobile.png",
+        "width": 390,
+        "height": 5938
+      }
+    ],
+    "visible": true
+  },
+  {
+    "id": "creci-ba",
+    "url": "https://sistema-pessoal-pra-estudo-de-concu.vercel.app/",
+    "capturedAt": "2026-10-22T01:37:55.732Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "assets/projects/creci-ba-desktop.png",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "mode": "mobile",
+        "file": "assets/projects/creci-ba-mobile.png",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "visible": false
+  },
+  {
+    "id": "quiz-9ano",
+    "url": "https://quiz-9ano.vercel.app/",
+    "capturedAt": "2026-10-22T01:38:01.166Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "assets/projects/quiz-9ano-desktop.png",
+        "width": 1440,
+        "height": 1062
+      },
+      {
+        "mode": "mobile",
+        "file": "assets/projects/quiz-9ano-mobile.png",
+        "width": 390,
+        "height": 1588
+      }
+    ],
+    "visible": false
+  },
+  {
+    "id": "anfc-cardapios",
+    "source": "local",
+    "capturedAt": "2026-10-23T22:08:44.871Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "public/assets/projects/anfc-cardapios-desktop.png",
+        "width": 1440,
+        "height": 7939,
+        "capturedAt": "2026-10-23T22:08:33.481Z"
+      },
+      {
+        "mode": "mobile",
+        "file": "public/assets/projects/anfc-cardapios-mobile.png",
+        "width": 390,
+        "height": 12829,
+        "capturedAt": "2026-10-23T22:08:43.254Z"
+      }
+    ],
+    "serverClosed": true,
+    "visible": true
+  },
+  {
+    "id": "riclick",
+    "source": "local",
+    "capturedAt": "2026-10-23T22:46:31.922Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "public/assets/projects/riclick-desktop.png",
+        "width": 1440,
+        "height": 1383,
+        "capturedAt": "2026-10-23T22:46:20.855Z"
+      },
+      {
+        "mode": "mobile",
+        "file": "public/assets/projects/riclick-mobile.png",
+        "width": 390,
+        "height": 2744,
+        "capturedAt": "2026-10-23T22:46:28.127Z"
+      }
+    ],
+    "serverClosed": true,
+    "visible": true
+  },
+  {
+    "id": "stockalto",
+    "source": "local",
+    "capturedAt": "2026-10-23T22:27:48.200Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "public/assets/projects/stockalto-desktop.png",
+        "width": 1440,
+        "height": 2503,
+        "capturedAt": "2026-10-23T22:27:39.196Z"
+      },
+      {
+        "mode": "mobile",
+        "file": "public/assets/projects/stockalto-mobile.png",
+        "width": 390,
+        "height": 2852,
+        "capturedAt": "2026-10-23T22:27:45.607Z"
+      }
+    ],
+    "serverClosed": true,
+    "visible": true
+  },
+  {
+    "id": "naveg",
+    "source": "local",
+    "capturedAt": "2026-10-23T22:29:32.950Z",
+    "images": [
+      {
+        "mode": "desktop",
+        "file": "public/assets/projects/naveg-desktop.png",
+        "width": 1440,
+        "height": 1000,
+        "capturedAt": "2026-10-23T22:29:24.473Z"
+      },
+      {
+        "mode": "mobile",
+        "file": "public/assets/projects/naveg-mobile.png",
+        "width": 390,
+        "height": 844,
+        "capturedAt": "2026-10-23T22:29:29.850Z"
+      }
+    ],
+    "serverClosed": true,
+    "visible": false
+  }
+]

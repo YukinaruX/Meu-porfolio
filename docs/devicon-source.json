@@ -1,0 +1,21 @@
+{
+  "repository": "https://github.com/devicons/devicon",
+  "commit": "6a37858047b0e8d9c9c0e68f4a071fc410652e89",
+  "icons": [
+    "git",
+    "jenkins",
+    "kotlin",
+    "python",
+    "csharp",
+    "java",
+    "go",
+    "react",
+    "nextjs",
+    "typescript",
+    "postgresql",
+    "supabase",
+    "docker",
+    "javascript"
+  ],
+  "license": "MIT"
+}

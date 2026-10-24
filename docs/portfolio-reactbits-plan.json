@@ -1,0 +1,34 @@
+{
+  "status": "implemented-and-verified-locally",
+  "approval": "Usuário instruiu siga após revisão da direção e pedido das seis skills.",
+  "brand": "Rikelme Batista",
+  "brief": "Reconstruir o portfólio com identidade profissional e composição autoral usando React Bits, preservando informações verificadas e capturas PNG reais.",
+  "references": ["https://reactbits.dev/", "https://aloftagencia.com/"],
+  "palette": {
+    "background": "#0b0a08",
+    "foreground": "#f3ede2",
+    "accent": "#b8916a",
+    "ambient": "#6b5646"
+  },
+  "typography": {"display": "Archivo", "emphasis": "Fraunces italic", "body": "Geist (Taste Skill v1)"},
+  "implementation": {
+    "framework": "React + Vite",
+    "components": ["React Bits Threads", "React Bits AnimatedContent", "React Bits Magnet"],
+    "note": "O pedido explícito do usuário por React Bits prevalece sobre a lista de técnicas do plugin scroll-3d. Não atualizar ou migrar os engines Three.js legados; preservar a versão anterior em backup local antes de implementar.",
+    "imageFormat": "PNG",
+    "estimatedGenerationCredits": 0,
+    "newGeneratedAssets": "Cinco referências de seção via imagegen solicitadas posteriormente; sem geração Higgsfield ou vídeos novos.",
+    "accessibility": ["reduced motion", "keyboard navigation", "mobile menu", "visible focus", "readable contrast"]
+  },
+  "sections": [
+    {"id":"inicio","nav_label":"Início","technique":"React Bits Threads + composição editorial","content_brief":"Nome, posicionamento em backend Go/full-stack, apresentação visual assimétrica e CTA para trabalhos.","assets":"Tipografia e linhas procedurais; sem imagens geradas."},
+    {"id":"projetos","nav_label":"Projetos","technique":"React Bits AnimatedContent + galeria React","content_brief":"Alice Vieira, Everton Editor, Estudos CRECI-BA e Quiz 9º Ano com capturas reais desktop/celular, descrição e links verificados.","assets":"Oito PNG existentes em assets/projects; CRECI-BA limitado ao acesso público."},
+    {"id":"sistemas","nav_label":"Sistemas","technique":"Layout editorial React","content_brief":"Facilities, Lideres-MG, Naveg, A-NFC, Sistema A-NFC e Riclick. Descrever o produto e a participação sem expor código ou dados privados.","assets":"Diagramas em SVG/CSS ligados ao domínio do produto; sem dashboards fictícios."},
+    {"id":"sobre","nav_label":"Sobre","technique":"React Bits AnimatedContent","content_brief":"Trajetória atualizada pelo PDF, foco técnico, graduação em andamento e experiência profissional.","assets":"Conteúdo verificado; sem retrato gerado."},
+    {"id":"contato","nav_label":"Contato","technique":"React Bits Magnet","content_brief":"E-mail, GitHub, LinkedIn e currículo para download.","assets":"PDF fornecido e links existentes."}
+  ],
+  "validation": ["Production build", "desktop and mobile browser QA", "public demo links", "PNG previews", "keyboard interactions", "reduced motion", "private data excluded from build"],
+  "validationResult": "Production build passed; Playwright CLI browser flows passed, four responsive widths, zero JS errors and zero Axe violations detected.",
+  "publication": "No new deployment in this revision; local production artifact is dist/.",
+  "pending": []
+}

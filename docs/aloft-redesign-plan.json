@@ -1,0 +1,96 @@
+{
+  "status": "implemented-and-validated",
+  "reference": "https://aloftagencia.com/",
+  "brand": "Rikelme Batista / A-NFC",
+  "implementation": "Existing React/Vite application; React Bits per explicit user instruction",
+  "palette": {
+    "background": "#000000",
+    "surface": "#10141c",
+    "text": "#ffffff",
+    "muted": "#a5adbd",
+    "action": "#2563eb",
+    "accent": "#6291ff"
+  },
+  "sections": [
+    {
+      "id": "inicio",
+      "nav_label": "Início",
+      "technique": [
+        "Threads",
+        "AnimatedContent",
+        "Magnet"
+      ],
+      "assets": "existing brand"
+    },
+    {
+      "id": "projetos",
+      "nav_label": "Projetos",
+      "technique": [
+        "Carousel",
+        "AnimatedContent"
+      ],
+      "assets": "8 existing PNG captures; desktop/mobile; no fabricated project pages"
+    },
+    {
+      "id": "servicos",
+      "nav_label": "Serviços",
+      "technique": [
+        "SpotlightCard",
+        "AnimatedContent"
+      ],
+      "assets": "existing icons"
+    },
+    {
+      "id": "sistemas",
+      "nav_label": "Sistemas",
+      "technique": [
+        "AnimatedContent"
+      ],
+      "assets": "existing case content"
+    },
+    {
+      "id": "processo",
+      "nav_label": "Processo",
+      "technique": [
+        "AnimatedContent"
+      ],
+      "assets": "existing icons and editorial content"
+    },
+    {
+      "id": "sobre",
+      "nav_label": "Sobre",
+      "technique": [
+        "AnimatedContent"
+      ],
+      "assets": "existing brand and career content"
+    },
+    {
+      "id": "contato",
+      "nav_label": "Contato",
+      "technique": [
+        "Magnet",
+        "AnimatedContent"
+      ],
+      "assets": "existing portrait and contact content",
+      "includes": [
+        "FAQ",
+        "approved quote chat"
+      ]
+    }
+  ],
+  "preserve": [
+    "PT/EN",
+    "quote chat",
+    "Supabase admin",
+    "project reader",
+    "real links",
+    "reduced motion",
+    "keyboard and touch access"
+  ],
+  "generated_assets": [],
+  "planned_videos": [],
+  "estimated_credits": 0,
+  "deployment": "local implementation; no new hosting service",
+  "approved_by_user": true,
+  "validation_report": "docs/aloft-build-review.json"
+}

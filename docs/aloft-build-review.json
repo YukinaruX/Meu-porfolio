@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "scope": "Local React/Vite portfolio revision; no deployment",
+  "plan": "docs/aloft-redesign-plan.json",
+  "sections_present": ["inicio", "projetos", "servicos", "sistemas", "processo", "sobre", "contato"],
+  "react_bits": ["Threads", "AnimatedContent", "Magnet", "Carousel", "SpotlightCard"],
+  "checks": {
+    "production_build": "pass",
+    "desktop_carousel_arrows_keyboard_drag": "pass",
+    "desktop_mobile_slides": "pass",
+    "capture_scrolling_and_vertical_drag": "pass",
+    "mobile_touch_swipe": "pass",
+    "project_reader_and_deep_links": "pass",
+    "quote_cta": "pass",
+    "responsive_and_localization": "pass",
+    "quote_and_admin_regression_with_mocked_api": "pass",
+    "reduced_motion": "pass",
+    "axe_wcag_a_aa_violations": 0,
+    "javascript_errors": 0
+  },
+  "plan_deviations": [],
+  "planned_videos": [],
+  "generated_assets": [],
+  "credits_used": 0,
+  "limits": ["No production deployment", "No Core Web Vitals measurement", "Build emits main chunk size warning at approximately 518 kB minified", "Automated accessibility checks do not replace a full manual audit"]
+}
