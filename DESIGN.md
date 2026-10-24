@@ -1,5 +1,14 @@
 # DESIGN.md — Rikelme Batista portfolio (scroll-3d)
 
+## Correção do orçamento em produção — 23/10/2026
+
+| Problema confirmado | Correção |
+|---|---|
+| Botão desativado após preencher e marcar aviso | Build publicado sem variáveis públicas do Supabase; adicionada configuração pública padrão versionada, preservando substituições por ambiente |
+| Origem de produção rejeitada com 403 | Função lead-intake versão 4 permite explicitamente https://rikfazlp.online; origens desconhecidas permanecem bloqueadas |
+
+Build verificado com variáveis de Supabase vazias, reproduzindo a hospedagem sem `.env`. Teste do CRM passou: revisão, edição, consentimento, falha e reenvio, confirmação PT/EN e atualização do painel. Nenhuma alteração de schema, permissões ou políticas RLS; somente chave publishable pública no cliente. Teste real de produção será feito após publicação, com um único pedido sintético identificado para remoção.
+
 ## Domínio da prévia confirmado — 23/10/2026
 
 | Pedido | Resultado |

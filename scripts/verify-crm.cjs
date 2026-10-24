@@ -1,9 +1,9 @@
 const { chromium } = require('playwright');
 const { spawn } = require('node:child_process');
 const assert = require('node:assert/strict');
-const { readFileSync } = require('node:fs');
-const configured = /VITE_SUPABASE_URL=https:\/\/(?!YOUR_PROJECT)/.test(readFileSync('.env', 'utf8'));
 (async () => {
+  const { productionSupabase } = await import('../src/lib/supabase-public.js');
+  const configured = Boolean(productionSupabase.url && productionSupabase.publishableKey);
   const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4185', '--strictPort'], { windowsHide: true, stdio: 'ignore' });
   let browser;
   try {

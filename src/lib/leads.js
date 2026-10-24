@@ -1,5 +1,7 @@
-export const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || '').replace(/\/$/, '');
-export const publicKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
+import { productionSupabase } from './supabase-public';
+
+export const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || productionSupabase.url).replace(/\/$/, '');
+export const publicKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || productionSupabase.publishableKey;
 export const configured = Boolean(supabaseUrl && publicKey);
 export const privacyVersion = '2026-10-23';
 

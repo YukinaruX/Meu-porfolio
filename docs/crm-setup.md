@@ -4,7 +4,11 @@ Supabase conectado ao projeto `trpwretnmxbkoahchlzp`. Migration confirmada, usu�
 
 O envio real foi verificado com um registro sintético, removido ao terminar: criação, reenvio sem duplicação, contato inválido, preflight CORS, origem não permitida, leitura anônima e sincronização sem autenticação. Também foram verificadas leitura/alteração como administrador e ausência de leitura para identidade fora da lista via contexto RLS. O login com a senha pessoal deve ser conferido pelo proprietário em `/painel`; nenhuma senha foi solicitada ou alterada.
 
-Sem `ALLOWED_ORIGINS`, a função permite `http://127.0.0.1:5173`, `http://localhost:5173`, `http://127.0.0.1:5174`, `http://localhost:5174`, `http://127.0.0.1:4185`, `http://127.0.0.1:4173` e `http://localhost:4173`. Antes da publicação do site, configure o segredo com o domínio público exato e as origens locais que deseja manter. Um valor configurado substitui a lista padrão. A porta 5174 está incluída porque o Vite pode usá-la quando 5173 já está ocupada.
+A função permite explicitamente `https://rikfazlp.online`. `ALLOWED_ORIGINS` configura origens adicionais; sem esse segredo, também permite `http://127.0.0.1:5173`, `http://localhost:5173`, `http://127.0.0.1:5174`, `http://localhost:5174`, `http://127.0.0.1:4185`, `http://127.0.0.1:4173` e `http://localhost:4173`. Origens desconhecidas continuam bloqueadas. A versão 4 da função inclui o domínio de produção.
+
+`src/lib/supabase-public.js` contém a URL e a chave **publishable** públicas deste projeto, usadas quando a hospedagem não define `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY`. As variáveis de ambiente continuam podendo substituir esses valores. Nenhum segredo ou chave service-role deve entrar nesse arquivo. O build publicado não depende do `.env` local; RLS e autenticação mantêm o controle de acesso aos pedidos. Referência: [chaves públicas Supabase](https://supabase.com/docs/guides/getting-started/api-keys).
+
+`node scripts/verify-production-quote.cjs --live` verifica o formulário real e cria um único pedido sintético. O UUID fica em `docs/private/production-quote-test.json`; confirme e remova exclusivamente esse registro após o teste.
 
 `node scripts/verify-supabase.mjs` repete a verificação HTTP real e imprime o UUID do pedido sintético para limpeza posterior pelo painel. `node scripts/verify-crm.cjs` verifica a interface local com ou sem configuração. Login com senha, logout, expiração, quota sob carga não foram testados nesta etapa.
 

@@ -3,7 +3,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2.118.0';
 // Public intake validates its body; database access remains server-side.
 Deno.serve(async (req: Request) => {
   const origin = req.headers.get('origin') || '';
-  const origins = (Deno.env.get('ALLOWED_ORIGINS') || 'http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:5174,http://localhost:5174,http://127.0.0.1:4185,http://127.0.0.1:4173,http://localhost:4173').split(',').map(value => value.trim()).filter(Boolean);
+  const origins = ['https://rikfazlp.online', ...(Deno.env.get('ALLOWED_ORIGINS') || 'http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:5174,http://localhost:5174,http://127.0.0.1:4185,http://127.0.0.1:4173,http://localhost:4173').split(',').map(value => value.trim()).filter(Boolean)];
   const headers = { 'Access-Control-Allow-Origin': origins.includes(origin) ? origin : 'null', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Vary': 'Origin' };
   const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { ...headers, 'Content-Type': 'application/json' } });
   if (!origins.includes(origin)) return json({ error: 'Origin not allowed' }, 403);
