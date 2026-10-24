@@ -1,6 +1,6 @@
 export const contact = {
   whatsapp: '5573999698822',
-  email: 'nevepsiquica333@gmail.com',
+  whatsappDisplay: '+55 (73) 99969-8822',
   github: 'https://github.com/YukinaruX',
   linkedin: 'https://www.linkedin.com/in/rikelme-batista-196561272',
   resume: '/curriculo-rikelme-batista.pdf',

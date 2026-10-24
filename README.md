@@ -40,6 +40,7 @@ O teste inicia uma prévia da produção, usa Playwright CLI em uma sessão pró
 - `src/styles.css`: tokens, componentes Tailwind e responsividade.
 - `src/components/react-bits/`: Threads, Magnet, AnimatedContent, Carousel, SpotlightCard e LogoLoop, com origem e adaptações em `PROVENANCE.md`.
 - `src/components/TechStack.jsx` e `public/assets/stack/`: faixa da stack em loop, pausa ao passar o mouse e versão estática para movimento reduzido; SVGs Devicon locais com origem em `docs/devicon-source.json`.
+- Compartilhamento: `public/social-preview.png` (1200 × 630), regenerada com `node scripts/generate-social-preview.cjs`. O domínio padrão é `https://rikfazlp.online`; configure `VITE_SITE_URL` apenas para substituir esse domínio. As tags Open Graph e Twitter ficam no HTML inicial, sem depender do JavaScript do navegador. A imagem usa endereço absoluto no domínio público.
 - `src/components/ProjectShowcase.jsx`: faixa arrastável, controles de projetos e capturas com rolagem dentro de cada cartão.
 - `src/components/HomeHero.jsx`, `StudioSections.jsx` e `src/studio.css`: abertura, serviços, processo, FAQ e composição visual.
 - `docs/aloft-reference-analysis.md`, `docs/aloft-redesign-plan.json`: exploração da referência e plano aprovado.

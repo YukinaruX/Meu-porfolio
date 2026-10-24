@@ -157,9 +157,9 @@ summary::-webkit-details-marker { display: none; }
 .contact-main { @apply relative grid items-center gap-10; grid-template-columns: 1fr auto; }
 .contact-main h2 { font-size: clamp(38px, 4.5vw, 68px); }
 .contact-main p:not(.eyebrow) { @apply mt-8 text-muted; font-size: 17px; line-height: 1.8; }
-.email-link { @apply mt-7 inline-flex items-center gap-4 border-b border-accent pb-2 font-medium text-accent; font-size: clamp(18px, 2.1vw, 28px); letter-spacing: -.025em; overflow-wrap: anywhere; transition: color .2s; }
-.email-link:hover { @apply text-paper; }
-.email-link svg { @apply shrink-0; }
+.whatsapp-link { @apply mt-7 inline-flex items-center gap-4 border-b border-accent pb-2 font-medium text-accent; font-size: clamp(18px, 2.1vw, 28px); letter-spacing: -.025em; overflow-wrap: anywhere; transition: color .2s; }
+.whatsapp-link:hover { @apply text-paper; }
+.whatsapp-link svg { @apply shrink-0; }
 .contact-orbit { @apply flex items-center justify-center rounded-full border border-accent text-accent; width: 160px; height: 160px; transition: color .25s, background-color .25s; }
 .contact-orbit:hover { @apply bg-accent text-ink; }
 .social-links { @apply relative mt-14 flex flex-wrap gap-x-10 gap-y-6; }
@@ -291,8 +291,8 @@ summary::-webkit-details-marker { display: none; }
   .contact-main h2 { font-size: clamp(32px, 7.8vw, 48px); }
   .contact-main p:not(.eyebrow) { font-size: 15px; }
   .contact-magnet { display: none !important; }
-  .email-link { font-size: clamp(16px, 4.4vw, 24px); gap: 8px; }
-  .email-link svg { width: 20px; }
+  .whatsapp-link { font-size: clamp(16px, 4.4vw, 24px); gap: 8px; }
+  .whatsapp-link svg { width: 20px; }
   .social-links { margin-top: 40px; gap: 24px; }
   .site-footer { margin-top: 56px; gap: 24px; padding-bottom: max(28px, env(safe-area-inset-bottom)); }
   .site-footer p { order: 3; flex-basis: 100%; }

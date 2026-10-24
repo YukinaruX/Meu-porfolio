@@ -1,5 +1,33 @@
 # DESIGN.md — Rikelme Batista portfolio (scroll-3d)
 
+## Domínio da prévia confirmado — 23/10/2026
+
+| Pedido | Resultado |
+|---|---|
+| Usar rikfazlp.online na prévia | Origem padrão https://rikfazlp.online, com imagem absoluta, og:url e canonical; VITE_SITE_URL permite substituir domínio |
+| Imagem representativa | social-preview.png de 1200 × 630, com foto e identidade do portfólio |
+
+Verificação pública confirmou HTTP redirecionando para HTTPS e página respondendo 200. Antes do envio, o HTML publicado ainda não tinha og:image. Build local validado; atualização enviada ao Git para publicação pela hospedagem. A exibição em cada aplicativo depende da atualização do cache da plataforma.
+
+## Contato por WhatsApp — 23/10/2026
+
+| Pedido | Resultado |
+|---|---|
+| Substituir e-mail pelo número de WhatsApp | Contato exibe +55 (73) 99969-8822 e abre conversa em wa.me; botão circular também usa WhatsApp |
+| Consistência no site | Contato do aviso de privacidade e alternativa sem JavaScript atualizados; rótulo em inglês incluído |
+
+Sem alterar os campos de contato enviados pelo visitante ou o login administrativo. Sem novos assets ou dependências; sem publicação.
+
+## Imagem para compartilhar o link — 23/10/2026
+
+| Pedido | Resultado |
+|---|---|
+| Mostrar imagem referente ao portfólio ao compartilhar | PNG 1200 × 630 com foto, nome, proposta do hero e cores do site |
+| Prévia sem executar React | Tags Open Graph e Twitter no HTML inicial com título, descrição, imagem, dimensões e texto alternativo |
+| Endereço completo da imagem | Build usa VITE_SITE_URL ou URL de produção do Vercel/Cloudflare; domínio público solicitado ao usuário, ainda pendente |
+
+Build passou; imagem inspecionada visualmente. Sem publicação. Pendente confirmar domínio público e validar a prévia no endereço publicado; sem essa confirmação, não declarar funcionamento nas plataformas externas.
+
 ## Animação do menu de navegação — 23/10/2026
 
 | Pedido | Resultado |

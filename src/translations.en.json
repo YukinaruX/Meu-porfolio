@@ -101,7 +101,6 @@
   "começa aqui.": "starts here.",
   "Converse comigo sobre sites, sistemas e soluções": "Let's talk about websites, software and solutions",
   "para o seu negócio.": "for your business.",
-  "Conversar com Rikelme por e-mail": "Email Rikelme",
   "Currículo": "Résumé",
   "A-NFC · Tecnologia & soluções digitais": "A-NFC · Technology & digital solutions",
   "Voltar ao topo": "Back to top",
@@ -121,7 +120,6 @@
   "Gestão operacional": "Operations management",
   "Sistema interno para solicitações de materiais, inventário, veículos, encomendas e assinaturas, com fluxos de aprovação e acompanhamento de status.": "An internal system for material requests, inventory, vehicles, deliveries and signatures, with approval workflows and status tracking.",
   "Atuação full-stack na evolução de módulos e regras de setor e subsetor, incluindo frontend e backend.": "Full-stack development of modules and department and subdepartment rules, covering both frontend and backend.",
-  "Gestão para barbearias": "Barbershop management",
   "Plataforma de agendamento, gestão operacional e controle financeiro para barbearias.": "A platform for barbershop scheduling, operations management and financial tracking.",
   "Contribuições no fluxo de reservas, nas rotas do portal público e na evolução do painel.": "Contributions to the booking flow, public portal routes and dashboard development.",
   "Vitrine comercial": "Product storefront",
@@ -150,5 +148,6 @@
   "Backend Go, interfaces e automações que conectam operação e produto. Conheça meus trabalhos.": "Go backend, interfaces and automations connecting operations and products. Explore my work.",
   "Serviços": "Services",
   "Processo": "Process",
-  "Começar um projeto": "Start a project"
+  "Começar um projeto": "Start a project",
+  "Conversar com Rikelme pelo WhatsApp": "Chat with Rikelme on WhatsApp"
 }
