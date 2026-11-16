@@ -1,5 +1,13 @@
 # DESIGN.md — Rikelme Batista portfolio (scroll-3d)
 
+## Acesso direto ao painel na Vercel — 16/11/2026
+
+| Plano | Resultado |
+|---|---|
+| Corrigir o 404 de `/painel` | Adicionado `vercel.json` com rewrites de `/painel` e `/painel/` para `/index.html` |
+
+Diagnóstico HTTP: produção retorna 200 na raiz e 404 `NOT_FOUND` da Vercel em `/painel`. A rota já existe em `src/main.jsx`; faltava o encaminhamento na hospedagem. Build local passou (`npm.cmd run build`), com aviso de bundle acima de 500 kB. Sem alteração de autenticação. Configuração ainda não publicada; validação HTTP após novo deploy pendente. Sem desvios de implementação ou novos assets.
+
 ## Nome A-NFC no mobile — 23/10/2026
 
 | Problema | Resultado |

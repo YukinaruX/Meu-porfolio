@@ -57,7 +57,7 @@ ANFC Cardápios, Riclick e Stockalto têm capturas locais na vitrine. Riclick mo
 
 ## Painel e privacidade
 
-O painel privado fica em `/painel`. Configuração de Supabase, permissões e Edge Function: [docs/crm-setup.md](docs/crm-setup.md). Sem a configuração real, o chat informa que o envio pelo site está indisponível e mantém o WhatsApp como opção.
+O painel privado fica em `/painel`. Na Vercel, o `vercel.json` da raiz encaminha `/painel` e `/painel/` para `index.html`, permitindo acesso direto e recarregamento. Mudanças nessa configuração exigem um novo deploy. Configuração de Supabase, permissões e Edge Function: [docs/crm-setup.md](docs/crm-setup.md). Sem a configuração real, o chat informa que o envio pelo site está indisponível e mantém o WhatsApp como opção.
 
 Verificação local do fluxo: `node scripts/verify-crm.cjs` (build com ou sem configuração). Verificação HTTP real: `node scripts/verify-supabase.mjs` (cria pedido sintético e imprime UUID para exclusão pelo painel). O aviso de privacidade e as preferências de armazenamento ficam no rodapé. Analytics e publicidade não foram instalados.
 
